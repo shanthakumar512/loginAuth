@@ -210,9 +210,10 @@ public class AuthController {
 		}
 		if(user.isPresent())	{ 	
 		return new	ResponseEntity<LoanUser>(user.get(),HttpStatus.OK);
+		} else {
+		return new ResponseEntity<String>("No Search Result Found", HttpStatus.BAD_REQUEST);
+				
 		}
-		
-		return ResponseEntity.ok(new MessageResponse("Loan Search Failed!"));
 	}
 
 	
