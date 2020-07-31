@@ -16,7 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import com.rabobank.lms.controllers.AuthController;
 import com.rabobank.lms.security.jwt.AuthEntryPointJwt;
 import com.rabobank.lms.security.jwt.AuthTokenFilter;
 import com.rabobank.lms.security.services.UserDetailsServiceImpl;

@@ -41,14 +41,14 @@ public class SpringBootRaboBankLMSApplicationTests {
 	    	LoginRequest loginRequest = new LoginRequest();
 	    	loginRequest.setUsername("user1");
 	    	loginRequest.setPassword("abc@123");
-	        ResponseEntity<JwtResponse> result = template.withBasicAuth("spring", "secret").
+	        ResponseEntity<?> result = template.
 	        		postForEntity("http://localhost:8765/api/auth/signin", loginRequest, JwtResponse.class);
 //	          .getForEntity("http://localhost:8765/api/auth/", String.class);
 	        assertEquals(HttpStatus.OK, result.getStatusCode());
 	    }
 	    
 //	    @Test
-	    public  void testPreAuthorisedCOntrol() {
+	    public  void testPreAuthorisedControl() {
 	    	Map<String, String> uriVariables = new HashMap<>();
 			uriVariables.put("loanNumber", "ABC1234SH");
 			uriVariables.put("loanUserEmail", "abc@gmail.c");
