@@ -24,6 +24,10 @@ import com.rabobank.lms.payload.response.JwtResponse;
 import com.rabobank.lms.security.jwt.JwtUtils;
 import com.rabobank.lms.security.services.UserDetailsImpl;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -35,7 +39,14 @@ public class AuthController {
 
 	@Autowired
 	JwtUtils jwtUtils; 
-
+	
+	@ApiOperation(value = "Authenticate the login request and sign in", response = JwtResponse.class, tags = "authenticateUser")
+	@ApiResponses(value = { 
+	            @ApiResponse(code = 200, message = "Success|OK"),
+	            @ApiResponse(code = 401, message = "not authorized!"), 
+	            @ApiResponse(code = 403, message = "forbidden!!!"),
+	            @ApiResponse(code = 404, message = "not found!!!") })
+	
 	@PostMapping("/signin")
 	public ResponseEntity<JwtResponse> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 		
@@ -46,7 +57,7 @@ public class AuthController {
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
-		logger.info("Access token generated");
+		logger.info("Access token generated{}", jwt);
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 		List<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority :: getAuthority)
 				.collect(Collectors.toList());

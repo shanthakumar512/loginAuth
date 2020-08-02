@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@SpringBootApplication(scanBasePackages = {"com.rabobank.lms"})
+@SpringBootApplication(scanBasePackages = {"com.rabobank.lms.*"})
 @EnableDiscoveryClient
 @EnableZuulProxy
 @EnableSwagger2
