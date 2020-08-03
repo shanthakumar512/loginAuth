@@ -57,7 +57,7 @@ public class AuthController {
 
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwt = jwtUtils.generateJwtToken(authentication);
-		logger.info("Access token generated{}", jwt);
+		logger.debug("Access token generated{}", jwt);
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 		List<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority :: getAuthority)
 				.collect(Collectors.toList());

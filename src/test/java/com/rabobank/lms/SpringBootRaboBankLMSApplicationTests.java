@@ -27,7 +27,7 @@ import java.util.Map;
 
 @SpringBootTest(classes= {H2JpaConfig.class,SpringBootRaboBankLMSApplication.class},webEnvironment = WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
-public class SpringBootRaboBankLMSApplicationTests {
+ class SpringBootRaboBankLMSApplicationTests {
 
 	 	@Autowired
 	    private TestRestTemplate template;
@@ -41,7 +41,7 @@ public class SpringBootRaboBankLMSApplicationTests {
 		
 		private static String token="";
 	    @Test
-	    public void givenAuthRequest_shouldSucceedWith200() throws Exception {
+	     void givenAuthRequest_shouldSucceedWith200() throws Exception {
 	    	LoginRequest loginRequest = new LoginRequest();
 	    	loginRequest.setUsername("user2");
 	    	loginRequest.setPassword("abc@123");
@@ -52,7 +52,7 @@ public class SpringBootRaboBankLMSApplicationTests {
 	    }
 	    
 	    @Test
-	    public void givenSignin_shouldSucceedWith200() throws Exception {
+	     void givenSignin_shouldSucceedWith200() throws Exception {
 	    	LoginRequest loginRequest = new LoginRequest();
 	    	loginRequest.setUsername("user1");
 	    	loginRequest.setPassword("abc@123");
@@ -62,7 +62,7 @@ public class SpringBootRaboBankLMSApplicationTests {
 	    }
 	    
 	    @Test
-	    public void givenSignin_shouldThrowUnauthorizedError() throws Exception {
+	     void givenSignin_shouldThrowUnauthorizedError() throws Exception {
 	    	LoginRequest loginRequest = new LoginRequest();
 	    	loginRequest.setUsername("user8");
 	    	loginRequest.setPassword("abc@123");
@@ -72,7 +72,7 @@ public class SpringBootRaboBankLMSApplicationTests {
 	    }
 	    
 	    @Test
-	    public void givenSignin_shouldThrow() throws UsernameNotFoundException {
+	     void givenSignin_shouldThrow() throws UsernameNotFoundException {
 	    	LoginRequest loginRequest = new LoginRequest();
 	    	loginRequest.setUsername("user1");
 	    	loginRequest.setPassword("abc@123");
