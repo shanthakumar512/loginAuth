@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import com.rabobank.lms.models.User;
 import com.rabobank.lms.payload.request.LoginRequest;
 import com.rabobank.lms.payload.response.JwtResponse;
 
@@ -42,6 +43,13 @@ import java.util.Map;
 		private static String token="";
 	    @Test
 	     void givenAuthRequest_shouldSucceedWith200() throws Exception {
+	    	User user= new User();
+	    	user.setId(1l);
+	    	user.setUsername("user2");
+	    	user.setPassword("$2a$10$M0MZfhaBKR.G7HNeAhOJvOeyjIIsCQD3hIIywwyyIhSbMy3nzGVri");
+	    	user.setEmail("user2@gmail.com");
+	    	user.setRoles(null);
+	    	
 	    	LoginRequest loginRequest = new LoginRequest();
 	    	loginRequest.setUsername("user2");
 	    	loginRequest.setPassword("abc@123");
@@ -53,6 +61,13 @@ import java.util.Map;
 	    
 	    @Test
 	     void givenSignin_shouldSucceedWith200() throws Exception {
+	    	User user= new User();
+	    	user.setId(1l);
+	    	user.setUsername("user2");
+	    	user.setPassword("$2a$10$M0MZfhaBKR.G7HNeAhOJvOeyjIIsCQD3hIIywwyyIhSbMy3nzGVri");
+	    	user.setEmail("user2@gmail.com");
+	    	user.setRoles(null);
+	    	
 	    	LoginRequest loginRequest = new LoginRequest();
 	    	loginRequest.setUsername("user1");
 	    	loginRequest.setPassword("abc@123");
