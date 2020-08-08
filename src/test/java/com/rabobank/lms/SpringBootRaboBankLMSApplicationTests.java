@@ -19,6 +19,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import com.rabobank.lms.models.User;
 import com.rabobank.lms.payload.request.LoginRequest;
 import com.rabobank.lms.payload.response.JwtResponse;
+import com.rabobank.lms.repository.UserRepository;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -40,6 +41,9 @@ import java.util.Map;
 			return "http://localhost:" + port;
 		}
 		
+		@Autowired
+		UserRepository userRepository;
+		
 		private static String token="";
 	    @Test
 	     void givenAuthRequest_shouldSucceedWith200() throws Exception {
@@ -49,6 +53,8 @@ import java.util.Map;
 	    	user.setPassword("$2a$10$M0MZfhaBKR.G7HNeAhOJvOeyjIIsCQD3hIIywwyyIhSbMy3nzGVri");
 	    	user.setEmail("user2@gmail.com");
 	    	user.setRoles(null);
+	    	
+	    	userRepository.save(user);
 	    	
 	    	LoginRequest loginRequest = new LoginRequest();
 	    	loginRequest.setUsername("user2");
@@ -63,10 +69,11 @@ import java.util.Map;
 	     void givenSignin_shouldSucceedWith200() throws Exception {
 	    	User user= new User();
 	    	user.setId(1l);
-	    	user.setUsername("user2");
+	    	user.setUsername("user1");
 	    	user.setPassword("$2a$10$M0MZfhaBKR.G7HNeAhOJvOeyjIIsCQD3hIIywwyyIhSbMy3nzGVri");
-	    	user.setEmail("user2@gmail.com");
+	    	user.setEmail("user1@gmail.com");
 	    	user.setRoles(null);
+	    	userRepository.save(user);
 	    	
 	    	LoginRequest loginRequest = new LoginRequest();
 	    	loginRequest.setUsername("user1");
