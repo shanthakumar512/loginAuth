@@ -1,7 +1,6 @@
  package com.rabobank.lms;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -14,18 +13,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
-
 import com.rabobank.lms.models.User;
 import com.rabobank.lms.payload.request.LoginRequest;
 import com.rabobank.lms.payload.response.JwtResponse;
 import com.rabobank.lms.repository.UserRepository;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @SpringBootTest(classes= {H2JpaConfig.class,SpringBootRaboBankLMSApplication.class},webEnvironment = WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
