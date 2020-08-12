@@ -57,14 +57,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
-	 @Override
-	    public void configure(WebSecurity web)  {
-	        web.ignoring().antMatchers("/v3/api-docs",
-	                "/swagger-ui.html#",
-	                "/swagger-ui/**");
-	    }
 
+	 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		logger.info("Configuring security for the Http request");
@@ -72,7 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 			.authorizeRequests().antMatchers("/api/auth/**").permitAll()
-//			.antMatchers("/**").permitAll()
+			.antMatchers("/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**","/actuator/**").permitAll()
 			.anyRequest().authenticated();
 
 		http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
